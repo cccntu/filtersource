@@ -31,7 +31,7 @@ jobs:
           pip install -r requirements.txt
       - name: Generate Summary
         run: |
-          python3 src/actions/generate-summary.py --base_ref ${{ github.base_ref }} --head_ref ${{ github.head_ref }}
+          python3 src/actions/generate-summary.py --base_ref ${{ github.event.pull_request.base.sha }} --head_ref ${{ github.event.pull_request.head.sha }}
       - id: get-comment-body
         run: |
           body=$(cat summary.md)
